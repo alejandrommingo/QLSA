@@ -196,7 +196,7 @@ multidimensionalProjector = function(subspace){
 
 #' contextualDistance
 #'
-#' contextualDistance is a function that takes two words projectors and a state vector and returns the contextual
+#' contextualDistance is a function that takes two words and a state vector and returns the contextual
 #' distance between them. To see more details about the contextual distance go to Gabora and Aerts (2002).
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
@@ -227,7 +227,7 @@ contextualDistance = function(word_a, word_b, gallitoCode, neutral_state = TRUE,
 
 #' quantumSimilarity
 #'
-#' quantumSimilarity is a function that takes two words projectors and a state vector and returns the quantum
+#' quantumSimilarity is a function that takes two words and a state vector and returns the quantum
 #' similarity between them. To see more details about the quantum similarity go to Pothos and Busemeyer (2011).
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
