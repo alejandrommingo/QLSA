@@ -1,3 +1,5 @@
+#' @import ggplot2 XML httr paran psych pracma ggwordcloud lsa
+NULL
 #' gallitoContour
 #'
 #' gallitoContour is a function that will extract a word contour from Gallito API LSA semantic space. It takes
