@@ -6,5 +6,6 @@ authors:
   orcid: "https://orcid.org/0000-0002-8375-0952"
 title: "Quantum Latent Semantic Analysis (QLSA)"
 version: 0.1.0
+doi: 10.5281/zenodo.5878175
 date-released: 2021-12-23
 url: "https://github.com/alejandrommingo/QLSA"
