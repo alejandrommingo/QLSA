@@ -10,6 +10,6 @@ Follow the next steps to install our package:
 
 1. Install "devtools" in your R session: `install.packages("devtools")`
 2. Open the "devtools" library: `library(devtools)`
-3. Install the "QLSA" package using the "install_github()" function: `install_github("amartinezm90/QLSA")`
+3. Install the "QLSA" package using the "install_github()" function: `install_github("alejandrommingo/QLSA")`
 
-Please, contact us if you have any question using the next email: a.martinez.m90@gmail.com
+Please, contact us if you have any question using the next email: alejandro.martinez@uam.es
