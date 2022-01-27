@@ -4,6 +4,12 @@ authors:
 - family-names: "Martinez-Mingo"
   given-names: "Alejandro"
   orcid: "https://orcid.org/0000-0002-8375-0952"
+- family-names: "Jorge-Botana"
+  given-names: "Guillermo"
+- family-names: "Martinez-Huertas"
+  given-names: "Jose Angel"
+- family-names: "Olmos"
+  given-names: "Ricardo"
 title: "Quantum Latent Semantic Analysis (QLSA)"
 version: 0.1.0
 doi: 10.5281/zenodo.5878175
