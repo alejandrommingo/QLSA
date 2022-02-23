@@ -8,9 +8,10 @@ NULL
 #' extract the contour
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @return  A data frame with the contour of the word is returned
 #' @export
-gallitoContour = function(word, gallitoCode, neighbors = 100){
+gallitoContour = function(word, gallitoCode, spaceName, neighbors = 100){
 
   k <- 300 # Define K dimensions
   n = neighbors # Define N neighbors
@@ -31,7 +32,8 @@ gallitoContour = function(word, gallitoCode, neighbors = 100){
   text2 <- enc2utf8(text2)
 
   # Make te query
-  cadena <- httr::POST("http://psicoee.uned.es/quantumlikespace_spanish/Service.svc/webHttp/getNearestNeighboursList", body = text2, httr::content_type("text/xml"))
+  space_url = paste("http://psicoee.uned.es/", spaceName, "/Service.svc/webHttp/getNearestNeighboursList", sep = "")
+  cadena <- httr::POST(space_url, body = text2, httr::content_type("text/xml"))
 
   # Correct the chain of characters
   txt <- gsub("&lt;", "<", cadena)
@@ -56,7 +58,7 @@ gallitoContour = function(word, gallitoCode, neighbors = 100){
     text <- enc2utf8(text)
 
     # Prepare the Gallito API Query
-    text2 <- "http://psicoee.uned.es/quantumlikespace_spanish/Service.svc/webHttp/getVectorOfTerm?code="
+    text2 <- paste("http://psicoee.uned.es/", spaceName, "/Service.svc/webHttp/getVectorOfTerm?code=", sep = "")
     text2 <- paste(text2, gallitoCode, sep = "")
     text2 <- paste(text2, "&a=", sep = "")
     text2 <- paste(text2, text, sep = "")
@@ -95,10 +97,11 @@ gallitoContour = function(word, gallitoCode, neighbors = 100){
 #' wordVector is a function that will extract a word vector from Gallito API LSA semantic space. It takes a word or a tupple (separated by "_") and returns the vector of that word in the LSA semanti space.
 #' @param word A string or a tupple of strings separated by "_" indicating the word you want to extract.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @return The word vector is returned
 #' @export
-wordVector = function(word, gallitoCode){
-  query <- "http://psicoee.uned.es/quantumlikespace_spanish/Service.svc/webHttp/getVectorOfTerm?code="
+wordVector = function(word, gallitoCode, spaceName){
+  query <- paste("http://psicoee.uned.es/", spaceName, "/Service.svc/webHttp/getVectorOfTerm?code=", sep = "")
   query <- paste(query, gallitoCode, sep = "")
   query <- paste(query, "&a=", sep = "")
   query <- paste(query, word, sep = "")
@@ -120,6 +123,7 @@ wordVector = function(word, gallitoCode){
 #' @param word A string or a tupple of strings separated by "_" indicating the word for which you want to
 #' define the subspace.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @param min_cosine The minimum cosine the function will use to return the plots of similar words for
 #' each new dimension of the subspace. By default `min_cosine = 0.5`.
 #' @param min_reilability The minimum reilability the function will consider to decide
@@ -128,10 +132,10 @@ wordVector = function(word, gallitoCode){
 #' @return The function will return a list with the subspace as `subspace`, the reilability test as `reilability_test`,
 #' the subspace graphical information as `subspace_info` and the EFA results as `EFA_info`.
 #' @export
-subspaceGeneration = function(word, gallitoCode, min_cosine = 0.5, min_reilability = 0.85){
+subspaceGeneration = function(word, gallitoCode, spaceName, min_cosine = 0.5, min_reilability = 0.85){
 
   # Extract the contour from Gallito API
-  word_contour = QLSA::gallitoContour(word, gallitoCode)
+  word_contour = QLSA::gallitoContour(word, gallitoCode, spaceName)
 
   # Perform parallel analysis and store the deserved dimensionality
   dim = paran::paran(t(word_contour), quietly = TRUE, status = FALSE)$Retained
@@ -201,21 +205,22 @@ multidimensionalProjector = function(subspace){
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @param neutral_state By default the function will take the neutral state between the two words subspaces
 #' to evaluate the similarity
 #' @param state The initial state the function will use to calculate the similarity between the two words in case
 #' `neutral_state = FALSE`.
 #' @return The function will return a value between 0 and +Inf indicating the distance between the two words.
 #' @export
-contextualDistance = function(word_a, word_b, gallitoCode, neutral_state = TRUE, state){
+contextualDistance = function(word_a, word_b, gallitoCode, spaceName, neutral_state = TRUE, state){
 
-  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode)$subspace
+  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode, spaceName)$subspace
   word_a_PR = QLSA::multidimensionalProjector(word_a_sbs)
-  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode)$subspace
+  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode, spaceName)$subspace
   word_b_PR = QLSA::multidimensionalProjector(word_b_sbs)
 
   if (neutral_state == TRUE){
-    state = QLSA::neutralState(word_a, word_b, gallitoCode)
+    state = QLSA::neutralState(word_a, word_b, gallitoCode, spaceName)
     return(sqrt(2*(1-sqrt((norm(word_b_PR%*%word_a_PR%*%state, type = "2"))^2))))
   }
   else{
@@ -232,21 +237,22 @@ contextualDistance = function(word_a, word_b, gallitoCode, neutral_state = TRUE,
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @param neutral_state By default the function will take the neutral state between the two words subspaces
 #' to evaluate the similarity
 #' @param state The initial state the function will use to calculate the similarity between the two words in case
 #' `neutral_state = FALSE`.
 #' @return The function will return a value between 0 and 1 indicating the similarity between the two words.
 #' @export
-quantumSimilarity = function(word_a, word_b, gallitoCode, neutral_state = TRUE, state){
+quantumSimilarity = function(word_a, word_b, gallitoCode, spaceName, neutral_state = TRUE, state){
 
-  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode)$subspace
+  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode, spaceName)$subspace
   word_a_PR = QLSA::multidimensionalProjector(word_a_sbs)
-  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode)$subspace
+  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode, spaceName)$subspace
   word_b_PR = QLSA::multidimensionalProjector(word_b_sbs)
 
   if (neutral_state == TRUE){
-    state = QLSA::neutralState(word_a, word_b, gallitoCode)
+    state = QLSA::neutralState(word_a, word_b, gallitoCode, spaceName)
     return(norm(word_b_PR %*% word_a_PR %*% state ,type = "2")^2)
   }
   else{
@@ -262,17 +268,18 @@ quantumSimilarity = function(word_a, word_b, gallitoCode, neutral_state = TRUE, 
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
+#' @param spaceName Gallito API LSA semantic space you want to use
 #' @return The function will return a value between 0 and 1 indicating the similarity between the two words.
 #' @export
-neutralState = function(word_a, word_b, gallitoCode){
+neutralState = function(word_a, word_b, gallitoCode, spaceName){
 
-  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode)$subspace
+  word_a_sbs = QLSA::subspaceGeneration(word_a, gallitoCode, spaceName)$subspace
   word_a_PR = QLSA::multidimensionalProjector(word_a_sbs)
-  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode)$subspace
+  word_b_sbs = QLSA::subspaceGeneration(word_b, gallitoCode, spaceName)$subspace
   word_b_PR = QLSA::multidimensionalProjector(word_b_sbs)
 
-  word_a_vector = QLSA::wordVector(word_a, gallitoCode)
-  word_b_vector = QLSA::wordVector(word_b, gallitoCode)
+  word_a_vector = QLSA::wordVector(word_a, gallitoCode, spaceName)
+  word_b_vector = QLSA::wordVector(word_b, gallitoCode, spaceName)
 
   # Estimate Neutral State
   intermediate_vector = (word_a_vector+word_b_vector)/(sqrt(sum((word_a_vector+word_b_vector)^2)))
