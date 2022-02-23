@@ -4,13 +4,21 @@
 \alias{subspaceGeneration}
 \title{subspaceGeneration}
 \usage{
-subspaceGeneration(word, gallitoCode, min_cosine = 0.5, min_reilability = 0.85)
+subspaceGeneration(
+  word,
+  gallitoCode,
+  spaceName,
+  min_cosine = 0.5,
+  min_reilability = 0.85
+)
 }
 \arguments{
 \item{word}{A string or a tupple of strings separated by "_" indicating the word for which you want to
 define the subspace.}
 
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use.}
 
 \item{min_cosine}{The minimum cosine the function will use to return the plots of similar words for
 each new dimension of the subspace. By default `min_cosine = 0.5`.}

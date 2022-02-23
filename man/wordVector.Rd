@@ -4,12 +4,14 @@
 \alias{wordVector}
 \title{wordVector}
 \usage{
-wordVector(word, gallitoCode)
+wordVector(word, gallitoCode, spaceName)
 }
 \arguments{
 \item{word}{A string or a tupple of strings separated by "_" indicating the word you want to extract.}
 
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use}
 }
 \value{
 The word vector is returned

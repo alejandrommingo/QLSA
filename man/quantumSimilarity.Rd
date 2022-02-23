@@ -4,7 +4,14 @@
 \alias{quantumSimilarity}
 \title{quantumSimilarity}
 \usage{
-quantumSimilarity(word_a, word_b, gallitoCode, neutral_state = TRUE, state)
+quantumSimilarity(
+  word_a,
+  word_b,
+  gallitoCode,
+  spaceName,
+  neutral_state = TRUE,
+  state
+)
 }
 \arguments{
 \item{word_a}{The first word the function will evaluate.}
@@ -12,6 +19,8 @@ quantumSimilarity(word_a, word_b, gallitoCode, neutral_state = TRUE, state)
 \item{word_b}{The second word the function will evaluate.}
 
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use}
 
 \item{neutral_state}{By default the function will take the neutral state between the two words subspaces
 to evaluate the similarity}
@@ -23,6 +32,6 @@ to evaluate the similarity}
 The function will return a value between 0 and 1 indicating the similarity between the two words.
 }
 \description{
-quantumSimilarity is a function that takes two words projectors and a state vector and returns the quantum
+quantumSimilarity is a function that takes two words and a state vector and returns the quantum
 similarity between them. To see more details about the quantum similarity go to Pothos and Busemeyer (2011).
 }

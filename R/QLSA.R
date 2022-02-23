@@ -7,9 +7,9 @@ NULL
 #' @param word A string or a tupple of strings separated by "_" indicating the word for which you want to
 #' extract the contour
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
-#' @param gallitoCode Gallito API password to extract information from the LSA semantic space
-#' @param spaceName Gallito API LSA semantic space you want to use
-#' @return  A data frame with the contour of the word is returned
+#' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
+#' @param spaceName Gallito API LSA semantic space you want to use.
+#' @return  A data frame with the contour of the word is returned.
 #' @export
 gallitoContour = function(word, gallitoCode, spaceName, neighbors = 100){
 
@@ -123,7 +123,7 @@ wordVector = function(word, gallitoCode, spaceName){
 #' @param word A string or a tupple of strings separated by "_" indicating the word for which you want to
 #' define the subspace.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
-#' @param spaceName Gallito API LSA semantic space you want to use
+#' @param spaceName Gallito API LSA semantic space you want to use.
 #' @param min_cosine The minimum cosine the function will use to return the plots of similar words for
 #' each new dimension of the subspace. By default `min_cosine = 0.5`.
 #' @param min_reilability The minimum reilability the function will consider to decide

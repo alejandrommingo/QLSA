@@ -4,7 +4,7 @@
 \alias{neutralState}
 \title{neutralState}
 \usage{
-neutralState(word_a, word_b, gallitoCode)
+neutralState(word_a, word_b, gallitoCode, spaceName)
 }
 \arguments{
 \item{word_a}{The first word the function will evaluate.}
@@ -12,6 +12,8 @@ neutralState(word_a, word_b, gallitoCode)
 \item{word_b}{The second word the function will evaluate.}
 
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use}
 }
 \value{
 The function will return a value between 0 and 1 indicating the similarity between the two words.

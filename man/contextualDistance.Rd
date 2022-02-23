@@ -4,7 +4,14 @@
 \alias{contextualDistance}
 \title{contextualDistance}
 \usage{
-contextualDistance(word_a, word_b, gallitoCode, neutral_state = TRUE, state)
+contextualDistance(
+  word_a,
+  word_b,
+  gallitoCode,
+  spaceName,
+  neutral_state = TRUE,
+  state
+)
 }
 \arguments{
 \item{word_a}{The first word the function will evaluate.}
@@ -12,6 +19,8 @@ contextualDistance(word_a, word_b, gallitoCode, neutral_state = TRUE, state)
 \item{word_b}{The second word the function will evaluate.}
 
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use}
 
 \item{neutral_state}{By default the function will take the neutral state between the two words subspaces
 to evaluate the similarity}
@@ -23,6 +32,6 @@ to evaluate the similarity}
 The function will return a value between 0 and +Inf indicating the distance between the two words.
 }
 \description{
-contextualDistance is a function that takes two words projectors and a state vector and returns the contextual
+contextualDistance is a function that takes two words and a state vector and returns the contextual
 distance between them. To see more details about the contextual distance go to Gabora and Aerts (2002).
 }

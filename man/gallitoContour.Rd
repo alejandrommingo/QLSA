@@ -4,20 +4,22 @@
 \alias{gallitoContour}
 \title{gallitoContour}
 \usage{
-gallitoContour(word, gallitoCode, neighbors = 100)
+gallitoContour(word, gallitoCode, spaceName, neighbors = 100)
 }
 \arguments{
 \item{word}{A string or a tupple of strings separated by "_" indicating the word for which you want to
 extract the contour}
 
-\item{gallitoCode}{Gallito API password to extract information from the LSA semantic space}
+\item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
+
+\item{spaceName}{Gallito API LSA semantic space you want to use.}
 
 \item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 }
 \value{
-A data frame with the contour of the word is returned
+A data frame with the contour of the word is returned.
 }
 \description{
 gallitoContour is a function that will extract a word contour from Gallito API LSA semantic space. It takes
-a word or a tupple (separated by "_") and returns a data frame with the contour of that word
+a word or a tupple (separated by "_") and returns a data frame with the contour of that word.
 }
