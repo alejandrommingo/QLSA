@@ -9,7 +9,9 @@ subspaceGeneration(
   gallitoCode,
   spaceName,
   min_cosine = 0.5,
-  min_reilability = 0.85
+  min_reilability = 0.85,
+  min_cosine_contour = 0.3,
+  neighbors = 100
 )
 }
 \arguments{
@@ -26,6 +28,10 @@ each new dimension of the subspace. By default `min_cosine = 0.5`.}
 \item{min_reilability}{The minimum reilability the function will consider to decide
 that a reorthogonalized dimension is equivalent to the dimension extracted in the factorial solution.
 By default `min_reilability = 0.85`.}
+
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
+
+\item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 }
 \value{
 The function will return a list with the subspace as `subspace`, the reilability test as `reilability_test`,

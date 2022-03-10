@@ -4,7 +4,14 @@
 \alias{neutralState}
 \title{neutralState}
 \usage{
-neutralState(word_a, word_b, gallitoCode, spaceName)
+neutralState(
+  word_a,
+  word_b,
+  gallitoCode,
+  spaceName,
+  min_cosine_contour = 0.3,
+  neighbors = 100
+)
 }
 \arguments{
 \item{word_a}{The first word the function will evaluate.}
@@ -14,6 +21,10 @@ neutralState(word_a, word_b, gallitoCode, spaceName)
 \item{gallitoCode}{Gallito API password to extract information from the LSA semantic space.}
 
 \item{spaceName}{Gallito API LSA semantic space you want to use}
+
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
+
+\item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 }
 \value{
 The function will return a value between 0 and 1 indicating the similarity between the two words.

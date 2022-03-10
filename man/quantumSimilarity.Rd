@@ -10,7 +10,9 @@ quantumSimilarity(
   gallitoCode,
   spaceName,
   neutral_state = TRUE,
-  state
+  state,
+  min_cosine_contour = 0.3,
+  neighbors = 100
 )
 }
 \arguments{
@@ -27,6 +29,10 @@ to evaluate the similarity}
 
 \item{state}{The initial state the function will use to calculate the similarity between the two words in case
 `neutral_state = FALSE`.}
+
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
+
+\item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 }
 \value{
 The function will return a value between 0 and 1 indicating the similarity between the two words.

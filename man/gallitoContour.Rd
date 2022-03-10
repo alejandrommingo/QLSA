@@ -4,7 +4,13 @@
 \alias{gallitoContour}
 \title{gallitoContour}
 \usage{
-gallitoContour(word, gallitoCode, spaceName, neighbors = 100)
+gallitoContour(
+  word,
+  gallitoCode,
+  spaceName,
+  neighbors = 100,
+  min_cosine_contour = 0.3
+)
 }
 \arguments{
 \item{word}{A string or a tupple of strings separated by "_" indicating the word for which you want to
@@ -15,6 +21,8 @@ extract the contour}
 \item{spaceName}{Gallito API LSA semantic space you want to use.}
 
 \item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
+
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
 }
 \value{
 A data frame with the contour of the word is returned.
