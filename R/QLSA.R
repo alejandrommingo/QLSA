@@ -271,7 +271,7 @@ quantumSimilarity = function(word_a, word_b, gallitoCode, spaceName, neutral_sta
 
 #' neutralState
 #'
-#' neutralState is a function that takes two words projectors and estimates the neutral state
+#' neutralState is a function that takes two words, generates its projectors and estimates the neutral state
 #' vector in between. To see more details about the quantum similarity go to Pothos and Busemeyer (2011).
 #' @param word_a The first word the function will evaluate.
 #' @param word_b The second word the function will evaluate.
@@ -301,6 +301,25 @@ neutralState = function(word_a, word_b, gallitoCode, spaceName, min_cosine_conto
 
 
 
+#' neutralStateProjectors
+#'
+#' neutralStateProjectors is a function that takes two words projectors and estimates the neutral state
+#' vector in between. To see more details about the quantum similarity go to Pothos and Busemeyer (2011).
+#' @param word_a_vec The first word one-dimensional vector.
+#' @param word_b_vec The second word one-dimensional vector.
+#' @param Projector_a The first word projector.
+#' @param Projector_b The second word projector.
+#' @return The function will return a value between 0 and 1 indicating the similarity between the two words.
+#' @export
+neutralStateProjectors = function(word_a_vec, word_b_vec, Projector_a, Projector_b){
+
+  # Estimate Neutral State
+  intermediate_vector = (word_a_vec+word_b_vec)/(sqrt(sum((word_a_vec+word_b_vec)^2)))
+  stVecOptim = optim(par = intermediate_vector, fn = stateOptim, PA=Projector_a, PB=Projector_b)
+  state_vector = stVecOptim$par/sqrt(sum(stVecOptim$par^2))
+
+  return(state_vector)
+}
 
 
 

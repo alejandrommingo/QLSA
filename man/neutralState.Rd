@@ -30,6 +30,6 @@ neutralState(
 The function will return a value between 0 and 1 indicating the similarity between the two words.
 }
 \description{
-neutralState is a function that takes two words projectors and estimates the neutral state
+neutralState is a function that takes two words, generates its projectors and estimates the neutral state
 vector in between. To see more details about the quantum similarity go to Pothos and Busemeyer (2011).
 }
