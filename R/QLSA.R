@@ -9,7 +9,7 @@ NULL
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
 #' @param gallitoCode Gallito API password to extract information from the LSA semantic space.
 #' @param spaceName Gallito API LSA semantic space you want to use.
-#' @param min_cosine_contour minimum cosine required for being a contour exemplar.
+#' @param min_cosine_contour minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.
 #' @return  A data frame with the contour of the word is returned.
 #' @export
 gallitoContour = function(word, gallitoCode, spaceName, neighbors = 100, min_cosine_contour = 0.3){
@@ -131,7 +131,7 @@ wordVector = function(word, gallitoCode, spaceName){
 #' @param min_reilability The minimum reilability the function will consider to decide
 #' that a reorthogonalized dimension is equivalent to the dimension extracted in the factorial solution.
 #' By default `min_reilability = 0.85`.
-#' @param min_cosine_contour minimum cosine required for being a contour exemplar.
+#' @param min_cosine_contour minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
 #' @return The function will return a list with the subspace as `subspace`, the reilability test as `reilability_test`,
 #' the subspace graphical information as `subspace_info` and the EFA results as `EFA_info`.
@@ -214,7 +214,7 @@ multidimensionalProjector = function(subspace){
 #' to evaluate the similarity
 #' @param state The initial state the function will use to calculate the similarity between the two words in case
 #' `neutral_state = FALSE`.
-#' @param min_cosine_contour minimum cosine required for being a contour exemplar.
+#' @param min_cosine_contour minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
 #' @return The function will return a value between 0 and +Inf indicating the distance between the two words.
 #' @export
@@ -248,7 +248,7 @@ contextualDistance = function(word_a, word_b, gallitoCode, spaceName, neutral_st
 #' to evaluate the similarity
 #' @param state The initial state the function will use to calculate the similarity between the two words in case
 #' `neutral_state = FALSE`.
-#' @param min_cosine_contour minimum cosine required for being a contour exemplar.
+#' @param min_cosine_contour minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.
 #' @param neighbors The number of neighbors inside the contour of the word. By default `neighbors = 100`.
 #' @return The function will return a value between 0 and 1 indicating the similarity between the two words.
 #' @export

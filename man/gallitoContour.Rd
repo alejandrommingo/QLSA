@@ -22,7 +22,7 @@ extract the contour}
 
 \item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 
-\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.}
 }
 \value{
 A data frame with the contour of the word is returned.

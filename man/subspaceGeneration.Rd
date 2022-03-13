@@ -29,7 +29,7 @@ each new dimension of the subspace. By default `min_cosine = 0.5`.}
 that a reorthogonalized dimension is equivalent to the dimension extracted in the factorial solution.
 By default `min_reilability = 0.85`.}
 
-\item{min_cosine_contour}{minimum cosine required for being a contour exemplar.}
+\item{min_cosine_contour}{minimum cosine required for being a contour exemplar. By default `min_cosine_contour = 0.3`.}
 
 \item{neighbors}{The number of neighbors inside the contour of the word. By default `neighbors = 100`.}
 }
