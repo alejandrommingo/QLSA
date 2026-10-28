@@ -12,4 +12,8 @@ Follow the next steps to install our package:
 2. Load the "devtools" library: `library(devtools)`
 3. Install the "QLSA" package using the "install_github()" function: `install_github("alejandrommingo/QLSA")`
 
-Please, contact us if you have any question using the next email: alejandro.martinez@uam.es
+Please, contact us if you have any question using the next email: a.martinez.m@psi.uned.es
+
+## Academic context
+
+This repository documents an early R implementation of semantic-subspace methods. For related research and publications, see [my academic research page](https://alejandrommingo.github.io/en/research/).
